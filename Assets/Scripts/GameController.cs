@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class GameController : MonoBehaviour {
 	
 	public int spaceSize;
@@ -14,18 +15,28 @@ public class GameController : MonoBehaviour {
 	public Crossroad Crossroad;
 	public CameraHandler camera;
 	public int carsNumber = 1;
-	List<Crossroad> crosses = new List<Crossroad>();
+	List<Crossroad> crosses;
 	public CarHandler car1;
-	List<CarHandler> carList = new List<CarHandler>();
+	List<CarHandler> carList;
 	List<FieldDescriber> world;
 	// Use this for initialization
 	void Start () {
 		world = new List<FieldDescriber>();
-		GenerateWorld(world);
-	}
+        carList = new List<CarHandler>();
+        crosses = new List<Crossroad>();
+        //GenerateWorld(world);
+    }
+
+    public void RunEditor() { Debug.logger.Log("Editor"); }
+    public void RunSimulation() {
+        world = new List<FieldDescriber>();
+        carList = new List<CarHandler>();
+        crosses = new List<Crossroad>();
+        GenerateWorld(world);
+    }
 	
 	void GenerateWorld(List<FieldDescriber> world) {
-		Debug.logger.Log("Hey");
+		//Debug.logger.Log("Hey");
 		Vector3 objectSize = new Vector3(fieldSize, fieldSize, 1.0f);
 		Field.transform.localScale = objectSize;
 		spawnFields(world);
@@ -219,22 +230,6 @@ public class GameController : MonoBehaviour {
 				foreach(FieldDescriber f in world){
 							int notPossible = 0;
 							List<int> randDir = new List<int>();
-						/*if(f.getIndex().y> 0 && f.getIndex().y<spaceSize-1){
-							FieldDescriber higherItem = world[GetArrayByIndex(new Vector2(f.getIndex().x,f.getIndex().y+1))];
-							int num = higherItem.getType();
-							if(higherItem.isFinal()){
-								if( num==1 || num==2 || num==4 || num==6 || num==7 || num==8 || num==11){f.setGeneric(1,1);}
-								else{f.setGeneric(1,2);randDir.Add(1);}
-								f.setFinal(true);
-							}
-							FieldDescriber lowerItem = world[GetArrayByIndex(new Vector2(f.getIndex().x,f.getIndex().y-1))];
-							num = lowerItem.getType();
-							if(lowerItem.isFinal()){
-								if( num==1 || num==2 || num==4 || num==5 || num==6 || num==9 || num==10){f.setGeneric(2,1);}
-								else{f.setGeneric(2,2);randDir.Add(2);}
-								f.setFinal(true);
-							}
-						}*/
 						if(f.getIndex().y<spaceSize-1){
 							FieldDescriber higherItem = world[GetArrayByIndex(new Vector2(f.getIndex().x,f.getIndex().y+1))];
 							int num = higherItem.getType();
@@ -253,22 +248,6 @@ public class GameController : MonoBehaviour {
 								//f.setFinal(true);
 							}
 						}
-						/*if(f.getIndex().x> 0 && f.getIndex().x<spaceSize-1){
-							FieldDescriber higherItem2 = world[GetArrayByIndex(new Vector2(f.getIndex().x+1,f.getIndex().y))];
-							int num = higherItem2.getType();
-							if(higherItem2.isFinal()){
-								if( num==1 || num==3 || num==4 || num==5 || num==7 || num==8 || num==9){f.setGeneric(3,1);}
-								else{f.setGeneric(3,2);randDir.Add(3);}
-								f.setFinal(true);
-							}
-							FieldDescriber lowerItem2 = world[GetArrayByIndex(new Vector2(f.getIndex().x-1,f.getIndex().y))];
-							num = lowerItem2.getType();
-							if(lowerItem2.isFinal()){
-								if( num==1 || num==3 || num==5 || num==6 || num==7 || num==10 || num==11){f.setGeneric(4,1);}
-								else{f.setGeneric(4,2);randDir.Add(4);}
-								f.setFinal(true);
-							}
-						}*/
 							if(f.getIndex().x<spaceSize-1){
 								FieldDescriber higherItem = world[GetArrayByIndex(new Vector2(f.getIndex().x+1,f.getIndex().y))];
 								int num = higherItem.getType();

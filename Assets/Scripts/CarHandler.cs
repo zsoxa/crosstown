@@ -159,8 +159,8 @@ public class CarHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		FrontColliderScript backCollison = this.gameObject.transform.GetChild(12).gameObject.GetComponent<FrontColliderScript>();
-		FrontColliderScript frontCollison = this.gameObject.transform.GetChild(13).gameObject.GetComponent<FrontColliderScript>();
+		FrontColliderScript backCollison = this.gameObject.transform.GetChild(16).gameObject.GetComponent<FrontColliderScript>();
+		FrontColliderScript frontCollison = this.gameObject.transform.GetChild(17).gameObject.GetComponent<FrontColliderScript>();
 		if(backCollison.getState()==1 && frontCollison.getState()==0){collison=0;}
 		BezierCurve bz = null;// = bezier;
 		if(curveTrip != null && curveTrip.Count>0){
